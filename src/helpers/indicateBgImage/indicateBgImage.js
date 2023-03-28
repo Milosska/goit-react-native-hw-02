@@ -8,11 +8,14 @@ export const indicateBgImage = () => {
   };
 
   const currentPixelRatio = PixelRatio.get();
-  if (currentPixelRatio >= 3) {
-    return bgPath.extrabig;
-  } else if (currentPixelRatio < 3 && currentPixelRatio >= 2) {
-    return bgPath.big;
-  } else {
-    return bgPath.general;
+  const overagePixelRatio = Math.round(currentPixelRatio);
+
+  switch (overagePixelRatio) {
+    case 3:
+      return bgPath.extrabig;
+    case 2:
+      return bgPath.big;
+    default:
+      return bgPath.general;
   }
 };
