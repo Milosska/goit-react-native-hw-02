@@ -1,20 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
-  bgImage: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  contentThumb: {
-    position: "relative",
-    flex: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    height: "60%",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    backgroundColor: "#ffffff",
-  },
   form: {
     flex: 0,
     width: "100%",
