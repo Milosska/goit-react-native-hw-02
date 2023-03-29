@@ -1,11 +1,25 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
+  bgImage: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   keybordContainer: {
+    flex: 0,
     alignItems: "center",
     justifyContent: "center",
-    // borderColor: "red",
-    // borderWidth: 2,
+    width: "100%",
+  },
+  contentThumb: {
+    position: "relative",
+    flex: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    height: "70%",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    backgroundColor: "#ffffff",
   },
   photoContainer: {
     position: "absolute",
@@ -45,6 +59,7 @@ export default styles = StyleSheet.create({
   },
   linkText: {
     marginTop: 16,
+    marginBottom: 45,
     color: "#1B4371",
     fontSize: 16,
     lineHeight: 19,
