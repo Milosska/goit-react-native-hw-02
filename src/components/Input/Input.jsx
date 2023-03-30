@@ -7,11 +7,16 @@ export const Input = ({
   style,
   secureTextEntry,
   setIsKeyboardShown,
+  value,
+  setUserData,
 }) => {
   const [isFocus, setIsFocus] = useState(false);
+  const DataName = placeholder === "Логин" ? "login" : "email";
+
   return (
     <View style={style}>
       <TextInput
+        value={value[DataName]}
         style={{
           ...styles.input,
           borderColor: isFocus ? "#FF6C00" : "#E8E8E8",
@@ -26,6 +31,12 @@ export const Input = ({
         onBlur={() => {
           setIsFocus(false);
           setIsKeyboardShown(false);
+        }}
+        onChangeText={(value) => {
+          setUserData((prev) => ({
+            ...prev,
+            [DataName]: value,
+          }));
         }}
       />
     </View>

@@ -15,7 +15,12 @@ import { indicateBgImage } from "../../helpers/indicateBgImage/indicateBgImage";
 
 const LoginScreen = () => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
+  const [userData, setUserData] = useState({ email: "", password: "" });
   const bgImage = indicateBgImage();
+
+  handleBtnPress = () => {
+    console.log(userData);
+  };
 
   return (
     <TouchableWithoutFeedback
@@ -46,12 +51,16 @@ const LoginScreen = () => {
               <Input
                 placeholder="Адрес электронной почты"
                 setIsKeyboardShown={setIsKeyboardShown}
+                value={userData}
+                setUserData={setUserData}
               />
               <PasswordInput
                 style={{ marginTop: 16, marginBottom: 43 }}
                 setIsKeyboardShown={setIsKeyboardShown}
+                value={userData}
+                setUserData={setUserData}
               />
-              <StyledButton textContent={"Войти"} />
+              <StyledButton textContent={"Войти"} onPress={handleBtnPress} />
             </View>
           </KeyboardAvoidingView>
           <Text style={styles.linkText}>Нет аккаунта? Зарегистрироваться</Text>

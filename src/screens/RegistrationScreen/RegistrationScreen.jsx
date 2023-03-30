@@ -1,23 +1,34 @@
 import { useState } from "react";
 import {
   View,
-  TouchableOpacity,
   Text,
   ImageBackground,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
 import styles from "./RegistrationScreen.styles";
+import { ImagePickerElem } from "../../components/ImagePicker/ImagePicker";
 import { Input } from "../../components/Input/Input";
 import { PasswordInput } from "../../components/PasswordInput/PasswordInput";
 import { StyledButton } from "../../components/StyledButton/StyledButton";
 import { indicateBgImage } from "../../helpers/indicateBgImage/indicateBgImage";
 
+const initialUserData = {
+  image: "",
+  login: "",
+  email: "",
+  password: "",
+};
+
 const RegistrationScreen = () => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
+  const [userData, setUserData] = useState(initialUserData);
   const bgImage = indicateBgImage();
+
+  handleBtnPress = () => {
+    console.log(userData);
+  };
 
   return (
     <TouchableWithoutFeedback
@@ -39,18 +50,7 @@ const RegistrationScreen = () => {
             marginBottom: isKeyboardShown ? 100 : 0,
           }}
         >
-          <View style={styles.photoContainer}>
-            <View style={styles.imageThumb}></View>
-            <TouchableOpacity style={styles.imageBtn} activeOpacity={0.7}>
-              <Icon
-                name="pluscircleo"
-                size={30}
-                color="#FF6C00"
-                margin="auto"
-              />
-            </TouchableOpacity>
-          </View>
-
+          <ImagePickerElem setUserData={setUserData} />
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.keybordContainer}
@@ -60,17 +60,26 @@ const RegistrationScreen = () => {
               <Input
                 placeholder="Логин"
                 setIsKeyboardShown={setIsKeyboardShown}
+                value={userData}
+                setUserData={setUserData}
               />
               <Input
                 style={{ marginTop: 16 }}
                 placeholder="Адрес электронной почты"
                 setIsKeyboardShown={setIsKeyboardShown}
+                value={userData}
+                setUserData={setUserData}
               />
               <PasswordInput
                 style={{ marginTop: 16, marginBottom: 43 }}
                 setIsKeyboardShown={setIsKeyboardShown}
+                value={userData}
+                setUserData={setUserData}
               />
-              <StyledButton textContent={"Зарегистрироваться"} />
+              <StyledButton
+                textContent={"Зарегистрироваться"}
+                onPress={handleBtnPress}
+              />
             </View>
           </KeyboardAvoidingView>
           <Text style={styles.linkText}>Уже есть аккаунт? Войти</Text>
