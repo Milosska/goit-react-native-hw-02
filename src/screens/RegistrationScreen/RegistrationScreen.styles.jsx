@@ -1,8 +1,14 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const deviceWidth = Dimensions.get("screen").width;
+const deviceHeight = Dimensions.get("screen").height;
 
 export default styles = StyleSheet.create({
   bgImage: {
     flex: 1,
+    // justifyContent: "flex-end",
+  },
+  contentContainer: {
     justifyContent: "flex-end",
   },
   keybordContainer: {
@@ -18,7 +24,6 @@ export default styles = StyleSheet.create({
     flex: 0,
     alignItems: "center",
     justifyContent: "center",
-    height: "70%",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#ffffff",
@@ -29,7 +34,6 @@ export default styles = StyleSheet.create({
   },
   pageHeader: {
     alignSelf: "center",
-    marginTop: 92,
     marginBottom: 32,
     fontWeight: 500,
     fontSize: 30,

@@ -8,9 +8,9 @@ export default styles = StyleSheet.create({
   contentThumb: {
     position: "relative",
     flex: 0,
+    // height: deviceWidth > deviceHeight ? "90%" : "60%",
     alignItems: "center",
     justifyContent: "center",
-    height: "60%",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#ffffff",
@@ -28,7 +28,7 @@ export default styles = StyleSheet.create({
   pageHeader: {
     alignSelf: "center",
     marginTop: 92,
-    marginBottom: 32,
+    // marginBottom: deviceWidth > deviceHeight ? 20 : 32,
     fontWeight: 500,
     fontSize: 30,
     lineHeight: 35,

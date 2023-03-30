@@ -1,12 +1,14 @@
 import { useState } from "react";
 import {
   View,
+  ScrollView,
   Text,
   ImageBackground,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
+import { useOrientation } from "../../hooks/useOrientation";
 import styles from "./RegistrationScreen.styles";
 import { ImagePickerElem } from "../../components/ImagePicker/ImagePicker";
 import { Input } from "../../components/Input/Input";
@@ -25,8 +27,9 @@ const RegistrationScreen = () => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
   const bgImage = indicateBgImage();
+  let orientation = useOrientation();
 
-  handleBtnPress = () => {
+  const handleBtnPress = () => {
     console.log(userData);
   };
 
@@ -44,46 +47,61 @@ const RegistrationScreen = () => {
         source={bgImage}
         resizeMode="cover"
       >
-        <View
-          style={{
-            ...styles.contentThumb,
-            marginBottom: isKeyboardShown ? 100 : 0,
+        <ScrollView
+          contentContainerStyle={{
+            ...styles.contentContainer,
+            flex: orientation === "landscape" ? 0 : 1,
           }}
         >
-          <ImagePickerElem setUserData={setUserData} />
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.keybordContainer}
+          <View
+            style={{
+              ...styles.contentThumb,
+              marginBottom: isKeyboardShown ? 100 : 0,
+              height: orientation === "landscape" ? "90%" : "70%",
+            }}
           >
-            <View style={styles.form}>
-              <Text style={styles.pageHeader}>Регистрация</Text>
-              <Input
-                placeholder="Логин"
-                setIsKeyboardShown={setIsKeyboardShown}
-                value={userData}
-                setUserData={setUserData}
-              />
-              <Input
-                style={{ marginTop: 16 }}
-                placeholder="Адрес электронной почты"
-                setIsKeyboardShown={setIsKeyboardShown}
-                value={userData}
-                setUserData={setUserData}
-              />
-              <PasswordInput
-                style={{ marginTop: 16, marginBottom: 43 }}
-                setIsKeyboardShown={setIsKeyboardShown}
-                value={userData}
-                setUserData={setUserData}
-              />
-              <StyledButton
-                textContent={"Зарегистрироваться"}
-                onPress={handleBtnPress}
-              />
-            </View>
-          </KeyboardAvoidingView>
-          <Text style={styles.linkText}>Уже есть аккаунт? Войти</Text>
-        </View>
+            <ImagePickerElem setUserData={setUserData} />
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              style={styles.keybordContainer}
+            >
+              <View style={styles.form}>
+                <Text
+                  style={{
+                    ...styles.pageHeader,
+                    marginTop: orientation === "landscape" ? 112 : 92,
+                  }}
+                >
+                  Регистрация
+                </Text>
+                <Input
+                  placeholder="Логин"
+                  setIsKeyboardShown={setIsKeyboardShown}
+                  value={userData}
+                  setUserData={setUserData}
+                />
+                <Input
+                  style={{ marginTop: 16 }}
+                  placeholder="Адрес электронной почты"
+                  setIsKeyboardShown={setIsKeyboardShown}
+                  value={userData}
+                  setUserData={setUserData}
+                />
+                <PasswordInput
+                  style={{ marginTop: 16 }}
+                  setIsKeyboardShown={setIsKeyboardShown}
+                  value={userData}
+                  setUserData={setUserData}
+                />
+                <StyledButton
+                  textContent={"Зарегистрироваться"}
+                  onPress={handleBtnPress}
+                />
+              </View>
+            </KeyboardAvoidingView>
+            <Text style={styles.linkText}>Уже есть аккаунт? Войти</Text>
+          </View>
+        </ScrollView>
       </ImageBackground>
     </TouchableWithoutFeedback>
   );

@@ -42,7 +42,7 @@ export const ImagePickerElem = ({ setUserData }) => {
               name="pluscircleo"
               size={30}
               color="#E8E8E8"
-              style={{ transform: "rotate(45deg)" }}
+              style={{ transform: [{ rotate: "45deg" }] }}
             />
           ) : (
             <AntDesign name="pluscircleo" size={30} color="#FF6C00" />

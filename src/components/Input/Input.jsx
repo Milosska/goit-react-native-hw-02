@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, TextInput } from "react-native";
+import { useOrientation } from "../../hooks/useOrientation";
 import styles from "./Input.styles";
 
 export const Input = ({
@@ -12,6 +13,7 @@ export const Input = ({
 }) => {
   const [isFocus, setIsFocus] = useState(false);
   const DataName = placeholder === "Логин" ? "login" : "email";
+  let orientation = useOrientation();
 
   return (
     <View style={style}>
@@ -20,6 +22,7 @@ export const Input = ({
         style={{
           ...styles.input,
           borderColor: isFocus ? "#FF6C00" : "#E8E8E8",
+          padding: orientation === "landscape" ? 8 : 16,
         }}
         placeholder={placeholder}
         placeholderTextColor="#BDBDBD"

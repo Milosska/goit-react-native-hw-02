@@ -6,7 +6,6 @@ export default styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   input: {
-    padding: 16,
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
     borderRadius: 8,

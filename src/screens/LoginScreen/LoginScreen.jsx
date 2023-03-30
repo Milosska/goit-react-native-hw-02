@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
+import { useOrientation } from "../../hooks/useOrientation";
 import styles from "./LoginScreen.styles";
 import { Input } from "../../components/Input/Input";
 import { PasswordInput } from "../../components/PasswordInput/PasswordInput";
@@ -17,8 +18,9 @@ const LoginScreen = () => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const bgImage = indicateBgImage();
+  let orientation = useOrientation();
 
-  handleBtnPress = () => {
+  const handleBtnPress = () => {
     console.log(userData);
   };
 
@@ -40,6 +42,7 @@ const LoginScreen = () => {
           style={{
             ...styles.contentThumb,
             marginBottom: isKeyboardShown ? 80 : 0,
+            height: orientation === "landscape" ? "90%" : "60%",
           }}
         >
           <KeyboardAvoidingView
@@ -47,7 +50,14 @@ const LoginScreen = () => {
             style={styles.keybordContainer}
           >
             <View style={styles.form}>
-              <Text style={styles.pageHeader}>Войти</Text>
+              <Text
+                style={{
+                  ...styles.pageHeader,
+                  marginBottom: orientation === "landscape" ? 20 : 32,
+                }}
+              >
+                Войти
+              </Text>
               <Input
                 placeholder="Адрес электронной почты"
                 setIsKeyboardShown={setIsKeyboardShown}
@@ -55,7 +65,9 @@ const LoginScreen = () => {
                 setUserData={setUserData}
               />
               <PasswordInput
-                style={{ marginTop: 16, marginBottom: 43 }}
+                style={{
+                  marginTop: 16,
+                }}
                 setIsKeyboardShown={setIsKeyboardShown}
                 value={userData}
                 setUserData={setUserData}
